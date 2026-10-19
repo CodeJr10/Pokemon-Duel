@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <!-- ===========================
+            PLAYER 1 CARD AREA
+            ===========================  -->
+      <section id="player1-box" aria-label="Computer hand">
+        <!-- Player 1 info  -->
+        <div class="player1-textinfo">
+          <span class="name">COMPUTER</span>
+          <span class="name" aria-label="separator">-</span>
+          <span class="score">10</span>
+        </div>
+
+        <!-- Player 1 card hand set -->
+        <div class="hand-cards">
+          <div class="card computer-card">
+            <div class="card-back"></div>
+            <div class="card-front">
+              <div class="img"></div>
+              <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+              </div>
+            </div>
+          </div>
+          <div class="card computer-card">
+            <div class="card-back"></div>
+            <div class="card-front">
+              <div class="img"></div>
+              <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+              </div>
+            </div>
+          </div>
+          <div class="card computer-card">
+            <div class="card-back"></div>
+            <div class="card-front">
+              <div class="img"></div>
+              <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+              </div>
+            </div>
+          </div>
+          <div class="card computer-card">
+            <div class="card-back"></div>
+            <div class="card-front">
+              <div class="img"></div>
+              <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+              </div>
+            </div>
+          </div>
+          <div class="card computer-card">
+            <div class="card-back"></div>
+            <div class="card-front">
+              <div class="img"></div>
+              <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===========================
+            BATTLE ARENA
+            ===========================  -->
+      <section class="battle-arena" aria-label="Battle Arena">
+        <div class="battle-arena-section">
+          <div class="card card-pile">
+            <div class="card-back">
+
+              <span class="card shuffle-card">Shuffle Card</span>
+            </div>
+          </div>
+
+          <div class="card active-slot card--computer-hand-revealed">
+            <div class="card-back"></div>
+            <div class="card-front">
+
+              <div class="card-info">
+                <div class="card-name">Name</div>
+                <div class="card-stat">Stat</div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+            <span class="vs-text">VS</span>
+             <div class="card active-slot card--user-hand-revealed">
+            <div class="card-back"></div>
+            <div class="card-front">
+
+              <div class="card-info">
+                <div class="card-name">Name</div>
+                <div class="card-stat">Stat</div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </section>
+
+      <!-- ===========================
+            PLAYER 2 CARD AREA
+            ===========================  -->
+      <section id="player2-box" aria-label="User hand">
+        <!-- Player 2 info  -->
+        <div class="player2-textinfo">
+          <span class="name">USER -</span>
+          <span class="score">10</span>
+        </div>
+        <!-- Player 2 card hand set -->
+        <div class="hand-cards">
+
+          <button type="button" class="card user-cards">
+            <div class="card-back"></div>
+            <div class="card-front">
+
+              <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+
+              </div>
+            </div>
+         
+           <button type="button" class="card user-cards">
+            <div class="card-back"></div>
+            <div class="card-front">
+                 <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+
+              </div>
+            </div>
+          </button>
+           <button class="card user-cards">
+            <div class="card-back"></div>
+            <div class="card-front">
+                <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+
+              </div>
+            </div>
+          </button>
+          <button class="card user-cards">
+            <div class="card-back"></div>
+            <div class="card-front">
+                <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+              </div>
+            </div>
+          </button>
+          <button class="card user-cards">
+            <div class="card-back"></div>
+            <div class="card-front">
+                 <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>
+
+              </div>
+            </div>
+          </button>
+        </div>
+      </section>
+    <main/>
+
+    <script src="script.js"></script>
+  </body>
+</html>

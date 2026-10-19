@@ -1,0 +1,113 @@
+/* ===========================
+   VARIABLES
+   =========================== */
+
+:root {
+  --card-width: 120px;
+  --card-width-active: 150px;
+  --card-ratio: 63 / 88;
+
+  --bg-start: #1e3a8a;
+  --bg-end: #312e81;
+  --text-color: white;
+
+  --computer-tint: rgba(59, 130, 246, 0.15);
+  --user-tint: rgba(239, 68, 68, 0.15);
+  --arena-tint: rgba(250, 204, 21, 0.08);
+
+  --card-border: rgba(255, 255, 255, 0.6);
+  --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* ===========================
+   GLOBAL
+   =========================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100vh;
+
+  background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+
+  color: var(--text-color);
+}
+
+.game-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/* ===========================
+   SHARED STYLING
+   =========================== */
+
+.hand-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ===========================
+   PLAYER 1 CARD AREA
+   =========================== */
+
+#player1-box {
+  flex: 3.5;
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.player1-textinfo {
+  display: flex;
+}
+
+.card {
+  width: 120px;
+  height: 150px;
+  border: 1px solid black;
+}
+
+/* ===========================
+   BATTLE AREA
+   =========================== */
+
+.battle-arena {
+  flex: 3.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(250, 204, 21, 0.08);
+}
+
+.battle-arena-section {
+  display: flex;
+  gap: 20px;
+}
+
+.vs-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+/* ===========================
+   PLAYER 2 CARD AREA
+   =========================== */
+
+#player2-box {
+  flex: 3.5;
+  background: rgba(239, 68, 68, 0.15);
+}
