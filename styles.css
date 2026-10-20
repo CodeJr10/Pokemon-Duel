@@ -65,34 +65,33 @@ body {
    =========================== */
 
 #player1-box {
-  flex: 3.5;
-  background: rgba(59, 130, 246, 0.15);
+  flex: 1;
+  background: var(--computer-tint);
 }
 
 .player1-textinfo {
   display: flex;
 }
 
-.card {
-  width: 120px;
-  height: 150px;
-  border: 1px solid black;
-}
+
 
 /* ===========================
    BATTLE AREA
    =========================== */
 
 .battle-arena {
-  flex: 3.5;
+  flex: 1;
+  min-height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(250, 204, 21, 0.08);
+  background: var(--arena-tint);
 }
 
 .battle-arena-section {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
@@ -108,6 +107,86 @@ body {
    =========================== */
 
 #player2-box {
-  flex: 3.5;
-  background: rgba(239, 68, 68, 0.15);
+  flex: 1;
+  background: var(--user-tint);
 }
+
+
+/* ===========================
+   CARD DESIGN
+   =========================== */
+
+.card{
+    position: relative;
+    flex-shrink: 0;
+    width: var(--card-width);
+    aspect-ratio: var(--card-ratio);
+    border: 1px solid var(--card-border);
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+  }
+
+  .user-cards{
+    cursor: pointer;
+  }
+
+  .user-cards:disabled{
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .card-active-slot{
+    width: var(--card-width-active);
+  }
+
+  .card-pile .card-back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .shuffle-card{
+    font-size: 0.8rem ;
+    font-weight: 600;
+    text-align: center;
+    padding: 4px;
+  }
+
+
+  /* ===========================
+   CARD FACES DESIGN
+   =========================== */
+
+   .card-back,.card-front{
+    position: absolute;
+    inset: 0;
+   }
+
+   .card-back{
+    background: linear-gradient(135deg, #7c3aed,#1d4ed8);
+   }
+
+   .card-front{
+    color: black;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px;
+   }
+
+   .card:not(.is-revealed) .card-front{
+    visibility: hidden;
+   }
+
+   .card.is-revealed .card-back{
+    visibility: hidden;
+   }
+
+   
