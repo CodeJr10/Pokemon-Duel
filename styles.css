@@ -189,4 +189,14 @@ body {
     visibility: hidden;
    }
 
+   .computer-card .card-back{
+    background-image: url('pokemon-card-back.png');
+    background-size: contain;
+   }
+
+   .user-cards .card-back{
+    background-image: url('pokemon-card-back.png');
+    background-size: contain;
+   }
+
    
