@@ -28,7 +28,7 @@ const state = {
 
 async function setPhase(newPhase) {
   state.phase = newPhase;
-  renderPhaseUI();
+  renderPhaseUI(); // decides what's visible/clickable based on state.phase
 
   function renderPhaseUI() {
     const startButton = document.getElementById("start-button");
@@ -40,6 +40,7 @@ async function setPhase(newPhase) {
     startButton.style.display =
       state.phase === "awaiting-user" ? "inline-block" : "none";
 
+    // Enable/disable clicking on the user's hand
     const userCards = userHandEl.querySelectorAll(".card");
     userCards.forEach((card) => {
       card.disabled = state.phase !== "awaiting-user";
@@ -62,6 +63,24 @@ async function setPhase(newPhase) {
 // =======================================
 // RENDER FUNCTIONS
 // =======================================
+
+// render card function
+
+function createCardElement(card, { clickable = false } = {}) {
+  const el = document.createElement(clickable ? "button" : "div");
+
+  el.className = clickable ? "card card--user" : "card card--computer";
+
+  el.innerHTML = ` <div class="card-back"></div>
+            <div class="card-front">
+            <img src="${card.image}" alt="${card.name}"
+            class="pokemon-image"/>
+            <div class="card-info">
+                <p class="card-name">Name</p>
+                <p class="card-stat">Stat</p>`;
+
+  return el;
+}
 
 // =======================================
 // INIT FUNCTION
