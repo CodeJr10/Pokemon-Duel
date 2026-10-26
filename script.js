@@ -93,7 +93,7 @@ function generateUniqueIds(count, maxId) {
     const randomId = Math.floor(Math.random() * maxId) + 1;
     ids.add(randomId);
 
-    console.log([...ids]);
+    // console.log([...ids]);
   }
   return [...ids];
 }
@@ -104,12 +104,13 @@ async function buildCardPool(size, maxId = 151) {
 
   const results = await Promise.allSettled(ids.map(fetchPokemon));
 
-  console.log(results);
+  // console.log(results);
 
   const pool = results
     .filter((r) => r.status === "fulfilled")
     .map((r) => r.value);
 
+  // console.log(pool);
   return pool;
 }
 
@@ -127,7 +128,7 @@ function shuffle(array) {
     [array[i], array[random]] = [array[random], array[i]];
   }
 }
-const numbers = [1, 2, 3, 5, 8];
+// const numbers = [1, 2, 3, 5, 8];
 // index -->     0  1  2  3  4
 
 // Iteration1:
@@ -135,8 +136,8 @@ const numbers = [1, 2, 3, 5, 8];
 // the range applied by math.random will be from 0-4
 // i and the random chosen index will switch places till the end of array
 
-shuffle(numbers);
-console.log(numbers);
+// shuffle(numbers);
+// console.log(numbers);
 
 // =======================================
 // RENDER FUNCTIONS
@@ -155,7 +156,7 @@ function createCardElement(card, { clickable = false } = {}) {
             class="pokemon-image"/>
             <div class="card-info">
                 <p class="card-name">${card.name}</p>
-                <p class="card-stat">${card.name}</p>
+                <p class="card-stat">${card.stat}</p>
                 </div>
                 </div>`;
 
@@ -175,3 +176,34 @@ function renderHand(handArray, containerEl, clickable) {
 // =======================================
 // INIT FUNCTION
 // =======================================
+
+async function initGame() {
+  setPhase("loading");
+
+  const pool = await buildCardPool(100);
+  shuffle(pool);
+
+  state.pile = pool;
+  state.userHand = state.pile.splice(0, 5);
+  state.computerHand = state.pile.splice(0, 5);
+
+  const userContainer = document.querySelector(".user--box .hand-cards");
+  const computerContainer = document.querySelector(
+    ".computer--box .hand-cards",
+  );
+
+  renderHand(state.userHand, userContainer, true);
+  renderHand(state.computerHand, computerContainer, false);
+
+  // Test to check whether the cards are generating the pokemon data face up
+  // userContainer.querySelectorAll(".card").forEach((card) => {
+  //   card.classList.add("is-revealed");
+  // });
+  // computerContainer.querySelectorAll(".card").forEach((card) => {
+  //   card.classList.add("is-revealed");
+  // });
+
+  setPhase("ready");
+}
+
+initGame();
