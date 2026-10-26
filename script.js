@@ -55,6 +55,8 @@ function renderPhaseUI() {
 // DATA FUNCTIONS
 // =======================================
 
+// fetch pokemon data from API
+
 async function fetchPokemon(id) {
   const POKE_API = `https://pokeapi.co/api/v2/pokemon/${id}`;
 
@@ -76,7 +78,38 @@ async function fetchPokemon(id) {
   };
 }
 
-fetchPokemon(1);
+// fetchPokemon(1).then(console.log());
+
+// generate unique id for each pokemon object fetched/created
+
+function generateUniqueIds(count, maxId) {
+  const ids = new Set();
+
+  while (ids.size < count) {
+    const randomId = Math.floor(Math.random() * maxId) + 1;
+    ids.add(randomId);
+
+    console.log([...ids]);
+  }
+  return [...ids];
+}
+
+// builds card pool with pokemon ids to create card structure
+async function buildCardPool(size, maxId = 151) {
+  const ids = generateUniqueIds(size, maxId);
+
+  const results = await Promise.allSettled(ids.map(fetchPokemon));
+
+  console.log(results);
+
+  const pool = results
+    .filter((r) => r.status === "fulfilled")
+    .map((r) => r.value);
+
+  return pool;
+}
+
+buildCardPool(100, 151);
 
 // =======================================
 // GAME FUNCTIONS
