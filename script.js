@@ -1,3 +1,7 @@
+// CURRENT FLOW
+
+// 1) START WITH STATE: loading
+
 // =======================================
 // STATE
 // =======================================
@@ -109,11 +113,30 @@ async function buildCardPool(size, maxId = 151) {
   return pool;
 }
 
-buildCardPool(100, 151);
+// buildCardPool(100, 151);
 
 // =======================================
 // GAME FUNCTIONS
 // =======================================
+
+// using fisher-yates algorithm for fair shuffling
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const random = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[random]] = [array[random], array[i]];
+  }
+}
+const numbers = [1, 2, 3, 5, 8];
+// index -->     0  1  2  3  4
+
+// Iteration1:
+// length = i = 5
+// the range applied by math.random will be from 0-4
+// i and the random chosen index will switch places till the end of array
+
+shuffle(numbers);
+console.log(numbers);
 
 // =======================================
 // RENDER FUNCTIONS
