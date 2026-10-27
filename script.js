@@ -72,6 +72,30 @@ function clickStartButton() {
 
 startButton.addEventListener("click", clickStartButton);
 
+const userHands = document.querySelector(".user--box .hand-cards");
+// console.log(userHands);
+userHands.addEventListener("click", cardClicked);
+
+function cardClicked(event) {
+  const selectedCardElement = event.target;
+
+  let selectedCard = selectedCardElement.parentNode;
+
+  while (!selectedCard.classList.contains("card")) {
+    selectedCard = selectedCard.parentNode;
+  }
+
+  console.log(selectedCard);
+
+  const cardIndex = parseInt(selectedCard.dataset.cardIndex);
+  // console.log(cardIndex);
+
+  // console.log(state.userHand[cardIndex]);
+
+  state.userActiveCard = state.userHand[cardIndex];
+  console.log(state.userActiveCard);
+}
+
 // =======================================
 // DATA FUNCTIONS
 // =======================================
