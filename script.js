@@ -77,6 +77,7 @@ const userHands = document.querySelector(".user--box .hand-cards");
 userHands.addEventListener("click", cardClicked);
 
 function cardClicked(event) {
+  disableAllCards();
   const selectedCardElement = event.target;
 
   let selectedCard = selectedCardElement.parentNode;
@@ -214,6 +215,13 @@ function renderHand(handArray, containerEl, clickable) {
     cardEl.dataset.cardIndex = index;
     containerEl.appendChild(cardEl);
   });
+}
+
+// disable all cards
+function disableAllCards() {
+  const allCards = userHands.querySelectorAll(".card");
+
+  allCards.forEach((card) => (card.disabled = true));
 }
 
 // =======================================
