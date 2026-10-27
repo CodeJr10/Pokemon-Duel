@@ -1,12 +1,21 @@
 // CURRENT FLOW
 
 // 1) START WITH STATE: loading
+// 2) Build Card pool function is first called and it generates a certain amount of ids using the generateUnique ids function
+// 3) fetch pokemon function then runs for the entire array of ids and fetches based on the pokemon object --> name, id,image, stat(addition of all base stats)
+// 4) shuffle the pool
+// 5) we generate the pile from the pool for the current state
+// 6) then the cards are removed from the pile for the user hand and computer hand using the splice method
+// 7) render the cards based on the clickable parameter which uses button for user hand and div for computer hand
+// 8) we are in ready state
+// 9) click on the start button to setPhase to --> awaiting-user, the user cards are now clickable and the start button is disappeared
+// 10)
 
 // =======================================
 // STATE
 // =======================================
-// loading → fetching the pool
-// ready → pool loaded, Start button visible, nothing clickable
+// loading → fetching the pool✅
+// ready → pool loaded, Start button visible, nothing clickable ✅
 // awaiting-user → user can click a card
 // resolving → both cards chosen, comparing, showing result
 // cleanup → removing used cards, refilling, resetting slots
@@ -38,8 +47,8 @@ function setPhase(newPhase) {
 function renderPhaseUI() {
   const startButton = document.getElementById("start-button");
   const userHandEl = document.querySelector(".user--box .hand-cards");
-  console.log(startButton);
-  console.log(userHandEl);
+  // console.log(startButton);
+  // console.log(userHandEl);
 
   // Hide/show start button
   startButton.style.display = state.phase === "ready" ? "inline-block" : "none";
@@ -54,6 +63,14 @@ function renderPhaseUI() {
 // =======================================
 // DOM
 // =======================================
+const startButton = document.getElementById("start-button");
+
+function clickStartButton() {
+  setPhase("awaiting-user");
+  console.log("ready phase over... now awaiting-user state starts");
+}
+
+startButton.addEventListener("click", clickStartButton);
 
 // =======================================
 // DATA FUNCTIONS
@@ -168,11 +185,13 @@ function createCardElement(card, { clickable = false } = {}) {
 function renderHand(handArray, containerEl, clickable) {
   containerEl.innerHTML = "";
 
-  handArray.forEach((card) => {
+  handArray.forEach((card, index) => {
     const cardEl = createCardElement(card, { clickable });
+    cardEl.dataset.cardIndex = index;
     containerEl.appendChild(cardEl);
   });
 }
+
 // =======================================
 // INIT FUNCTION
 // =======================================
