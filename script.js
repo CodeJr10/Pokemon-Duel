@@ -95,6 +95,11 @@ function cardClicked(event) {
 
   state.userActiveCard = state.userHand[cardIndex];
   console.log(state.userActiveCard);
+  const userActiveContainer = document.querySelector(
+    ".battle-arena-section .user-slot",
+  );
+
+  renderUserActiveSlot(state.userActiveCard, userActiveContainer);
 }
 
 // =======================================
@@ -205,6 +210,24 @@ function createCardElement(card, { clickable = false } = {}) {
   return el;
 }
 
+function createCardActiveSlot(card) {
+  const el = document.createElement("div");
+
+  el.className = "card card-active-slot is-revealed";
+
+  el.innerHTML = `<div class="card-back"></div>
+            <div class="card-front">
+              <img src="${card.image}" alt="${card.name}"
+              class="pokemon-image"/>
+              <div class="card-info">
+                <div class="card-name">${card.name}</div>
+                <div class="card-stat">${card.stat}</div>
+              </div>
+            </div>`;
+
+  return el;
+}
+
 // render hand function
 
 function renderHand(handArray, containerEl, clickable) {
@@ -224,6 +247,12 @@ function disableAllCards() {
   allCards.forEach((card) => (card.disabled = true));
 }
 
+function renderUserActiveSlot(card, containerEl) {
+  containerEl.innerHTML = "";
+
+  const activeUserCardSlot = createCardActiveSlot(card);
+  containerEl.appendChild(activeUserCardSlot);
+}
 // =======================================
 // INIT FUNCTION
 // =======================================
