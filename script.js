@@ -77,6 +77,7 @@ const userHands = document.querySelector(".user--box .hand-cards");
 userHands.addEventListener("click", cardClicked);
 
 function cardClicked(event) {
+  // User card selection function
   const selectedCardElement = event.target.closest(".card");
   console.log(selectedCardElement);
   while (selectedCardElement === null) {
@@ -92,7 +93,22 @@ function cardClicked(event) {
     ".battle-arena-section .user-slot",
   );
 
-  renderUserActiveSlot(state.userActiveCard, userActiveContainer);
+  // Computer card selection function
+
+  const computerActiveContainer = document.querySelector(
+    ".battle-arena-section .computer-slot",
+  );
+
+  function generateRandomId() {
+    return Math.floor(Math.random() * 6);
+  }
+
+  const randomNum = generateRandomId();
+
+  state.computerActiveCard = state.computerHand[randomNum];
+
+  renderActiveSlot(state.computerActiveCard, computerActiveContainer);
+  renderActiveSlot(state.userActiveCard, userActiveContainer);
 }
 
 // =======================================
@@ -240,11 +256,11 @@ function disableAllCards() {
   allCards.forEach((card) => (card.disabled = true));
 }
 
-function renderUserActiveSlot(card, containerEl) {
+function renderActiveSlot(card, containerEl) {
   containerEl.innerHTML = "";
 
-  const activeUserCardSlot = createCardActiveSlot(card);
-  containerEl.appendChild(activeUserCardSlot);
+  const activeCardSlot = createCardActiveSlot(card);
+  containerEl.appendChild(activeCardSlot);
 }
 // =======================================
 // INIT FUNCTION
