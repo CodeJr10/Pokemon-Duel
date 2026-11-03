@@ -77,21 +77,14 @@ const userHands = document.querySelector(".user--box .hand-cards");
 userHands.addEventListener("click", cardClicked);
 
 function cardClicked(event) {
-  disableAllCards();
-  const selectedCardElement = event.target;
-
-  let selectedCard = selectedCardElement.parentNode;
-
-  while (!selectedCard.classList.contains("card")) {
-    selectedCard = selectedCard.parentNode;
+  const selectedCardElement = event.target.closest(".card");
+  console.log(selectedCardElement);
+  while (selectedCardElement === null) {
+    return;
   }
+  disableAllCards();
 
-  console.log(selectedCard);
-
-  const cardIndex = parseInt(selectedCard.dataset.cardIndex);
-  // console.log(cardIndex);
-
-  // console.log(state.userHand[cardIndex]);
+  const cardIndex = parseInt(selectedCardElement.dataset.cardIndex);
 
   state.userActiveCard = state.userHand[cardIndex];
   console.log(state.userActiveCard);
