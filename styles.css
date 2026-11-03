@@ -79,7 +79,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--arena-tint);
+  /* background: var(--arena-tint); */
 }
 
 .battle-arena-section {
@@ -162,7 +162,8 @@ body {
 }
 
 .card-back {
-  background: linear-gradient(135deg, #7c3aed, #1d4ed8);
+  background-image: url("pokemon-card-back.png");
+  background-size: contain;
 }
 
 .card-front {
@@ -180,16 +181,6 @@ body {
 
 .card.is-revealed .card-back {
   visibility: hidden;
-}
-
-.computer-card .card-back {
-  background-image: url("pokemon-card-back.png");
-  background-size: contain;
-}
-
-.user-card .card-back {
-  background-image: url("pokemon-card-back.png");
-  background-size: contain;
 }
 
 .pokemon-image {
@@ -214,3 +205,124 @@ body {
   font-size: 0.8rem;
   font-weight: 600;
 }
+
+.high-stat-card .card-front {
+  background-color: black;
+  color: white;
+}
+
+.pseudo-legendary-card .card-front {
+  background: radial-gradient(at center, #4A4A4A 0%, #1A1A1A 50%, #000000 100%);
+  color: white;
+}
+
+.legendary-card .card-front {
+  background: radial-gradient(at center, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+  color: black;
+}
+/* 
+Here are the proper commit message tags for your Pokémon card game project, organized by category:
+
+## Styling & UI
+
+- `style:` — CSS changes, visual tweaks, colors, spacing, fonts, layouts
+  - Example: `style: adjust card spacing and add border radius`
+  - Example: `style: update gradient background colors`
+
+- `ui:` — UI component changes, structure tweaks that affect appearance
+  - Example: `ui: rebuild card component with back and front faces`
+  - Example: `ui: reorganize battle arena layout`
+
+## Features & Functionality
+
+- `feat:` — new feature or game mechanic
+  - Example: `feat: implement card selection logic for user hand`
+  - Example: `feat: add round winner determination`
+  - Example: `feat: implement card discard and refill system`
+
+- `fix:` — bug fixes and corrections
+  - Example: `fix: prevent clicking cards during computer turn`
+  - Example: `fix: correct stat comparison logic`
+
+## Code Quality & Structure
+
+- `refactor:` — code restructuring without changing functionality
+  - Example: `refactor: separate game state from rendering logic`
+  - Example: `refactor: consolidate card styling into base class`
+
+- `chore:` — maintenance, tooling, dependencies, or config changes
+  - Example: `chore: organize CSS variables at top of stylesheet`
+  - Example: `chore: add CSS reset with box-sizing border-box`
+
+- `docs:` — documentation, comments, or readme updates
+  - Example: `docs: add comments to HTML sections`
+  - Example: `docs: document card data structure`
+
+## Debugging & Testing
+
+- `debug:` — debugging code, temporary logs, or troubleshooting
+  - Example: `debug: add console logs to round resolution`
+  - Example: `debug: log card state after each draw`
+
+- `test:` — testing setup, test cases (if you add automated tests later)
+  - Example: `test: add manual test cases for tie scenarios`
+
+## Data & API
+
+- `data:` — fetching, processing, or managing data (Pokémon API calls, card pools)
+  - Example: `data: fetch pokémon base stats from API`
+  - Example: `data: implement card pool shuffling`
+
+- `api:` — API integration or changes
+  - Example: `api: integrate PokéAPI for card generation`
+  - Example: `api: add error handling for failed requests`
+
+## Specific to Your Game
+
+- `game:` — core game logic or mechanics
+  - Example: `game: implement 20-point win condition`
+  - Example: `game: add computer difficulty levels`
+
+- `state:` — state management or data structure updates
+  - Example: `state: initialize player hands and draw pile`
+  - Example: `state: track used cards per player`
+
+## Layout & Structure
+
+- `layout:` — structural HTML changes or section reorganization
+  - Example: `layout: convert vs-container to main with sections`
+  - Example: `layout: restructure battle arena row`
+
+## Common patterns for your project
+
+You'll likely use these combinations most often:
+
+- `feat: add card flip animation` — new feature
+- `fix: resolve button styling on user cards` — bug fix
+- `style: update card border color for visibility` — purely visual
+- `refactor: move game logic to separate function` — cleaner code
+- `data: fetch and cache pokémon stats` — API work
+- `chore: organize CSS variables` — setup/maintenance
+- `docs: document state object structure` — documentation
+
+## Format
+
+Keep your commit message format consistent:
+
+```
+<tag>: <short description (50 chars or less)>
+
+<optional longer explanation if needed>
+```
+
+Example:
+
+```
+feat: implement computer card selection logic
+
+The computer now picks a card from its hand based on difficulty level.
+Easy: random selection. Medium: weighted towards higher stats.
+Hard: always pick the highest stat card available.
+```
+
+Use these tags consistently throughout your project, and your git history will be clean and searchable. */
