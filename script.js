@@ -110,6 +110,8 @@ function cardClicked(event) {
 
   renderActiveSlot(state.computerActiveCard, computerActiveContainer);
   renderActiveSlot(state.userActiveCard, userActiveContainer);
+
+  delayReveal(3000);
 }
 
 // =======================================
@@ -131,9 +133,11 @@ async function fetchPokemon(id) {
 
   const totalStats = data.stats.reduce((sum, stat) => sum + stat.base_stat, 0);
 
+  const pokemonName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+
   return {
     id: id,
-    name: data.name,
+    name: pokemonName,
     image: data.sprites.front_default,
     stat: totalStats,
   };
@@ -230,7 +234,7 @@ function createCardElement(card, { clickable = false } = {}) {
 function createCardActiveSlot(card) {
   const el = document.createElement("div");
 
-  el.className = "card card-active-slot is-revealed";
+  el.className = "card card-active-slot";
 
   if (card.stat > 575 && card.stat < 600) {
     el.classList.add("high-stat-card");
@@ -277,6 +281,25 @@ function renderActiveSlot(card, containerEl) {
 
   const activeCardSlot = createCardActiveSlot(card);
   containerEl.appendChild(activeCardSlot);
+}
+
+function delayReveal(ms) {
+  setTimeout(() => {
+    revealCards();
+  }, ms);
+}
+
+function revealCards() {
+  const userActiveContainer = document.querySelector(
+    ".battle-arena-section .user-slot .card-active-slot",
+  );
+  const computerActiveContainer = document.querySelector(
+    ".battle-arena-section .computer-slot .card-active-slot",
+  );
+  console.log(userActiveContainer);
+  console.log(computerActiveContainer);
+  computerActiveContainer.classList.add("is-revealed");
+  userActiveContainer.classList.add("is-revealed");
 }
 // =======================================
 // INIT FUNCTION
