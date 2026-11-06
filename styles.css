@@ -123,6 +123,9 @@ body {
   background: transparent;
   color: inherit;
   font: inherit;
+  transition:
+    opacity 0.4s ease,
+    filter 0.4s ease;
 }
 
 .user-card {
@@ -212,13 +215,38 @@ body {
 }
 
 .pseudo-legendary-card .card-front {
-  background: radial-gradient(at center, #4A4A4A 0%, #1A1A1A 50%, #000000 100%);
+  background: radial-gradient(at center, #4a4a4a 0%, #1a1a1a 50%, #000000 100%);
   color: white;
 }
 
 .legendary-card .card-front {
-  background: radial-gradient(at center, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+  background: radial-gradient(at center, #ffd700 0%, #ffa500 50%, #ff8c00 100%);
   color: black;
+}
+
+.glow-card {
+  border: 1px solid #ffd700;
+  border-radius: 6px;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow:
+      0 0 5px #ffd700,
+      0 0 10px #ffd700;
+  }
+
+  to {
+    box-shadow:
+      0 0 15px #ffd700,
+      0 0 30px #ffd700;
+  }
+}
+
+.dull-card {
+  opacity: 0.35;
+  filter: grayscale(100%);
 }
 /* 
 Here are the proper commit message tags for your Pokémon card game project, organized by category:

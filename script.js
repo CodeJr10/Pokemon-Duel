@@ -200,6 +200,23 @@ function shuffle(array) {
 // shuffle(numbers);
 // console.log(numbers);
 
+function compareCards(userCard, computerCard) {
+  const userCardStat = state.userActiveCard.stat;
+  const computerCardStat = state.computerActiveCard.stat;
+
+  console.log(computerCard);
+  console.log(userCard);
+
+  if (userCardStat > computerCardStat) {
+    userCard.classList.add("glow-card");
+    computerCard.classList.add("dull-card");
+    console.log("user wins");
+  } else {
+    computerCard.classList.add("glow-card");
+    userCard.classList.add("dull-card");
+    console.log("Computer wins");
+  }
+}
 // =======================================
 // RENDER FUNCTIONS
 // =======================================
@@ -300,7 +317,15 @@ function revealCards() {
   console.log(computerActiveContainer);
   computerActiveContainer.classList.add("is-revealed");
   userActiveContainer.classList.add("is-revealed");
+
+  function delayCompare(ms, userCard, computerCard) {
+    setTimeout(() => {
+      compareCards(userCard, computerCard);
+    }, ms);
+  }
+  delayCompare(2000, userActiveContainer, computerActiveContainer);
 }
+
 // =======================================
 // INIT FUNCTION
 // =======================================
