@@ -77,10 +77,11 @@ const userHands = document.querySelector(".user--box .hand-cards");
 userHands.addEventListener("click", cardClicked);
 
 function cardClicked(event) {
+  if (state.phase !== "awaiting-user") return;
   // User card selection function
   const selectedCardElement = event.target.closest(".card");
   console.log(selectedCardElement);
-  while (selectedCardElement === null) {
+  if (selectedCardElement === null) {
     return;
   }
   disableAllCards();
@@ -100,7 +101,7 @@ function cardClicked(event) {
   );
 
   function generateRandomId() {
-    return Math.floor(Math.random() * 6);
+    return Math.floor(Math.random() * 5);
   }
 
   const randomNum = generateRandomId();
@@ -155,7 +156,7 @@ function generateUniqueIds(count, maxId) {
 }
 
 // builds card pool with pokemon ids to create card structure
-async function buildCardPool(size, maxId = 151) {
+async function buildCardPool(size, maxId = 700) {
   const ids = generateUniqueIds(size, maxId);
 
   const results = await Promise.allSettled(ids.map(fetchPokemon));
@@ -206,6 +207,13 @@ function createCardElement(card, { clickable = false } = {}) {
 
   el.className = clickable ? "card user-card" : "card computer-card";
 
+  if (card.stat > 575 && card.stat < 600) {
+    el.classList.add("high-stat-card");
+  } else if (card.stat === 600) {
+    el.classList.add("pseudo-legendary-card");
+  } else if (card.stat > 600) {
+    el.classList.add("legendary-card");
+  }
   el.innerHTML = ` <div class="card-back"></div>
             <div class="card-front">
             <img src="${card.image}" alt="${card.name}"
@@ -224,6 +232,14 @@ function createCardActiveSlot(card) {
 
   el.className = "card card-active-slot is-revealed";
 
+  if (card.stat > 575 && card.stat < 600) {
+    el.classList.add("high-stat-card");
+  } else if (card.stat === 600) {
+    el.classList.add("pseudo-legendary-card");
+  } else if (card.stat > 600) {
+    el.classList.add("legendary-card");
+  }
+  0;
   el.innerHTML = `<div class="card-back"></div>
             <div class="card-front">
               <img src="${card.image}" alt="${card.name}"
