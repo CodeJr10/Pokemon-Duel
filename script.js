@@ -214,7 +214,7 @@ function shuffle(array) {
 // shuffle(numbers);
 // console.log(numbers);
 
-function compareCards() {
+async function compareCards() {
   const userCard = document.querySelector(
     ".battle-arena-section .user-slot .card-active-slot",
   );
@@ -228,15 +228,34 @@ function compareCards() {
   if (userCardStat > computerCardStat) {
     userCard.classList.add("glow-card");
     computerCard.classList.add("dull-card");
+    state.userScore = state.userScore + 1;
+    console.log(state.userScore);
     console.log("user wins");
   } else {
     computerCard.classList.add("glow-card");
     userCard.classList.add("dull-card");
     console.log("Computer wins");
+    state.computerScore = state.computerScore + 1;
+    console.log(state.computerScore);
   }
+
+  await delay(1500);
+
+  updateScore(state.userScore, state.computerScore);
 }
 
-function updateScore() {}
+function updateScore(userScore, computerScore) {
+  console.log(`userScore: ${userScore}, computerScore: ${computerScore}`);
+  const userScoreEl = document.querySelector(".user-textinfo .score");
+  const computerScoreEl = document.querySelector(".computer-textinfo .score");
+
+  userScoreEl.textContent = userScore;
+  computerScoreEl.textContent = computerScore;
+  console.log(userScoreEl);
+  console.log(computerScoreEl);
+
+  cleanupCard();
+}
 // =======================================
 // RENDER FUNCTIONS
 // =======================================
@@ -345,6 +364,7 @@ async function initGame() {
   state.userHand = state.pile.splice(0, 5);
   state.computerHand = state.pile.splice(0, 5);
 
+  console.log(state.userHand, state.computerHand);
   const userContainer = document.querySelector(".user--box .hand-cards");
   const computerContainer = document.querySelector(
     ".computer--box .hand-cards",
