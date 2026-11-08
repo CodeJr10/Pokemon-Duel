@@ -60,6 +60,10 @@ function renderPhaseUI() {
   });
 }
 
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // =======================================
 // DOM
 // =======================================
@@ -76,11 +80,11 @@ const userHands = document.querySelector(".user--box .hand-cards");
 // console.log(userHands);
 userHands.addEventListener("click", cardClicked);
 
-function cardClicked(event) {
+async function cardClicked(event) {
   if (state.phase !== "awaiting-user") return;
   // User card selection function
   const selectedCardElement = event.target.closest(".card");
-  console.log(selectedCardElement);
+
   if (selectedCardElement === null) {
     return;
   }
@@ -111,7 +115,17 @@ function cardClicked(event) {
   renderActiveSlot(state.computerActiveCard, computerActiveContainer);
   renderActiveSlot(state.userActiveCard, userActiveContainer);
 
-  delayReveal(3000);
+  await delay(3000);
+
+  revealCards();
+
+  await delay(1500);
+
+  compareCards();
+
+  await delay(1500);
+
+  updateScores();
 }
 
 // =======================================
@@ -200,12 +214,16 @@ function shuffle(array) {
 // shuffle(numbers);
 // console.log(numbers);
 
-function compareCards(userCard, computerCard) {
+function compareCards() {
+  const userCard = document.querySelector(
+    ".battle-arena-section .user-slot .card-active-slot",
+  );
+  const computerCard = document.querySelector(
+    ".battle-arena-section .computer-slot .card-active-slot",
+  );
+
   const userCardStat = state.userActiveCard.stat;
   const computerCardStat = state.computerActiveCard.stat;
-
-  console.log(computerCard);
-  console.log(userCard);
 
   if (userCardStat > computerCardStat) {
     userCard.classList.add("glow-card");
@@ -217,6 +235,8 @@ function compareCards(userCard, computerCard) {
     console.log("Computer wins");
   }
 }
+
+function updateScore() {}
 // =======================================
 // RENDER FUNCTIONS
 // =======================================
@@ -300,12 +320,6 @@ function renderActiveSlot(card, containerEl) {
   containerEl.appendChild(activeCardSlot);
 }
 
-function delayReveal(ms) {
-  setTimeout(() => {
-    revealCards();
-  }, ms);
-}
-
 function revealCards() {
   const userActiveContainer = document.querySelector(
     ".battle-arena-section .user-slot .card-active-slot",
@@ -313,17 +327,8 @@ function revealCards() {
   const computerActiveContainer = document.querySelector(
     ".battle-arena-section .computer-slot .card-active-slot",
   );
-  console.log(userActiveContainer);
-  console.log(computerActiveContainer);
   computerActiveContainer.classList.add("is-revealed");
   userActiveContainer.classList.add("is-revealed");
-
-  function delayCompare(ms, userCard, computerCard) {
-    setTimeout(() => {
-      compareCards(userCard, computerCard);
-    }, ms);
-  }
-  delayCompare(2000, userActiveContainer, computerActiveContainer);
 }
 
 // =======================================
