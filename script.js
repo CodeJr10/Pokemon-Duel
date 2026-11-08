@@ -122,10 +122,7 @@ async function cardClicked(event) {
   await delay(1500);
 
   compareCards();
-
-  await delay(1500);
-
-  updateScores();
+  // updateScores();
 }
 
 // =======================================
