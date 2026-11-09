@@ -65,7 +65,7 @@ body {
   background: var(--computer-tint);
 }
 
-.player1-textinfo {
+.computer-textinfo {
   display: flex;
 }
 
@@ -95,7 +95,6 @@ body {
   align-items: center;
   font-size: 1.5rem;
 }
-
 /* ===========================
    PLAYER 2 CARD AREA
    =========================== */
@@ -247,6 +246,9 @@ body {
 .dull-card {
   opacity: 0.35;
   filter: grayscale(100%);
+}
+
+.draw-card {
 }
 /* 
 Here are the proper commit message tags for your Pokémon card game project, organized by category:

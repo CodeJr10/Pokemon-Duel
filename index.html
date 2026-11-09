@@ -13,16 +13,14 @@
             ===========================  -->
       <section class="player1-box computer--box" aria-label="Computer hand">
         <!-- Player 1 info  -->
-        <div class="player1-textinfo">
+        <div class="computer-textinfo">
           <span class="name">COMPUTER</span>
           <span class="name" aria-label="separator">-</span>
-          <span class="score">10</span>
+          <span class="score">0</span>
         </div>
 
         <!-- Player 1 card hand set -->
-        <div class="hand-cards">
-
-        </div>
+        <div class="hand-cards"></div>
       </section>
 
       <!-- ===========================
@@ -32,44 +30,13 @@
         <button id="start-button">Start</button>
         <div class="battle-arena-section">
           <div class="card card-pile">
-            <div class="card-back">
-
-              <span class="shuffle-card">Shuffle Card</span>
-            </div>
-          </div>
-          <div class="computer-slot">
-          <div class="card card-active-slot is-revealed ">
             <div class="card-back"></div>
-            <div class="card-front">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pokemon img"
-              class="pokemon-image"/>
-              <div class="card-info">
-                <div class="card-name">Name</div>
-                <div class="card-stat">Stat</div>
-              </div>
-            </div>
-            </div>
+            <span class="shuffle-card">Card Deck</span>
           </div>
+          <div class="computer-slot"></div>
 
-
-
-
-
-            <span class="vs-text">VS</span>
-            <div class="user-slot">
-            <div class="card card-active-slot is-revealed">
-            <div class="card-back"></div>
-            <div class="card-front">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pokemon img"
-              class="pokemon-image"/>
-              <div class="card-info">
-                <div class="card-name">Name</div>
-                <div class="card-stat">Stat</div>
-              </div>
-            </div>
-            </div>
-          </div>
-        
+          <span class="vs-text">VS</span>
+          <div class="user-slot"></div>
         </div>
       </section>
 
@@ -78,17 +45,15 @@
             ===========================  -->
       <section class="player2-box user--box" aria-label="User hand">
         <!-- Player 2 info  -->
-        <div class="player2-textinfo">
-          <span class="name">USER -</span>
-          <span class="score">10</span>
+        <div class="user-textinfo">
+          <span class="name">USER </span>
+          <span class="name" aria-label="separator">-</span>
+          <span class="score">0</span>
         </div>
         <!-- Player 2 card hand set -->
-        <div class="hand-cards">
-
-
-        </div>
+        <div class="hand-cards"></div>
       </section>
-    <main/>
+    </main>
 
     <script src="script.js"></script>
   </body>
