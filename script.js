@@ -225,15 +225,18 @@ async function compareCards() {
   if (userCardStat > computerCardStat) {
     userCard.classList.add("glow-card");
     computerCard.classList.add("dull-card");
-    state.userScore = state.userScore + 1;
+    state.userScore = state.userScore + 2;
     console.log(state.userScore);
     console.log("user wins");
-  } else {
+  } else if (computerCardStat > userCardStat) {
     computerCard.classList.add("glow-card");
     userCard.classList.add("dull-card");
     console.log("Computer wins");
-    state.computerScore = state.computerScore + 1;
+    state.computerScore = state.computerScore + 2;
     console.log(state.computerScore);
+  } else {
+    state.userScore = state.userScore + 1;
+    state.computerScore = state.computerScore + 1;
   }
 
   await delay(1500);
@@ -251,7 +254,7 @@ function updateScore(userScore, computerScore) {
   console.log(userScoreEl);
   console.log(computerScoreEl);
 
-  cleanupCard();
+  cleanupCard(state.computerActiveCard, state.userActiveCard);
 }
 // =======================================
 // RENDER FUNCTIONS
@@ -347,6 +350,18 @@ function revealCards() {
   userActiveContainer.classList.add("is-revealed");
 }
 
+function cleanupCard(computerCard, userCard) {
+  console.log(computerCard.id);
+  console.log(userCard.id);
+
+  state.userHand = state.userHand.filter((item) => item.id !== userCard.id);
+  state.computerHand = state.computerHand.filter(
+    (item) => item.id !== computerCard.id,
+  );
+
+  console.log(state.userHand, state.computerHand);
+}
+
 // =======================================
 // INIT FUNCTION
 // =======================================
@@ -382,3 +397,7 @@ async function initGame() {
 }
 
 initGame();
+
+// clickcard --> rendercard --> resolve result --> cleanup
+
+// cleanup -->
