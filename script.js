@@ -105,7 +105,7 @@ async function cardClicked(event) {
   );
 
   function generateRandomId() {
-    return Math.floor(Math.random() * 5);
+    return Math.floor(Math.random() * state.computerHand.length);
   }
 
   const randomNum = generateRandomId();
