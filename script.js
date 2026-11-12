@@ -242,6 +242,10 @@ async function compareCards() {
   await delay(1500);
 
   updateScore(state.userScore, state.computerScore);
+
+  await delay(1500);
+
+  cleanupCard(state.computerActiveCard, state.userActiveCard);
 }
 
 function updateScore(userScore, computerScore) {
@@ -253,8 +257,6 @@ function updateScore(userScore, computerScore) {
   computerScoreEl.textContent = computerScore;
   console.log(userScoreEl);
   console.log(computerScoreEl);
-
-  cleanupCard(state.computerActiveCard, state.userActiveCard);
 }
 // =======================================
 // RENDER FUNCTIONS
@@ -351,15 +353,50 @@ function revealCards() {
 }
 
 function cleanupCard(computerCard, userCard) {
-  console.log(computerCard.id);
-  console.log(userCard.id);
-
+  // remove the current active cards from the hand
   state.userHand = state.userHand.filter((item) => item.id !== userCard.id);
   state.computerHand = state.computerHand.filter(
     (item) => item.id !== computerCard.id,
   );
 
+  // adding a new card to the hands
+  if (state.pile.length > 1) {
+    const newUserCard = state.pile.splice(0, 1)[0];
+    state.userHand.push(newUserCard);
+    const newComputerCard = state.pile.splice(0, 1)[0];
+    state.computerHand.push(newComputerCard);
+  }
+
+  const userContainer = document.querySelector(".user--box .hand-cards");
+  const computerContainer = document.querySelector(
+    ".computer--box .hand-cards",
+  );
+
+  // rerender the hands
+  renderHand(state.userHand, userContainer, true);
+  renderHand(state.computerHand, computerContainer, false);
+
+  // reset the active containers
+  document.querySelector(
+    ".battle-arena-section .user-slot .card-active-slot",
+  ).innerHTML = "";
+  document.querySelector(
+    ".battle-arena-section .computer-slot .card-active-slot",
+  ).innerHTML = "";
+
+  // safety net
+  state.computerActiveCard = null;
+  state.userActiveCard = null;
   console.log(state.userHand, state.computerHand);
+
+  // win condition
+  if (state.userScore >= 20 || state.computerScore >= 20) {
+    setPhase("game-over");
+    return;
+  }
+
+  // new round if win condition is false
+  setPhase("awaiting-user");
 }
 
 // =======================================
