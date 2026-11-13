@@ -377,12 +377,20 @@ function cleanupCard(computerCard, userCard) {
   renderHand(state.computerHand, computerContainer, false);
 
   // reset the active containers
-  document.querySelector(
+  const userActiveContainer = document.querySelector(
     ".battle-arena-section .user-slot .card-active-slot",
-  ).innerHTML = "";
-  document.querySelector(
+  );
+
+  userActiveContainer.innerHTML = "";
+  userActiveContainer.classList.remove("glow-card");
+  userActiveContainer.classList.remove("dull-card");
+  const computerActiveContainer = document.querySelector(
     ".battle-arena-section .computer-slot .card-active-slot",
-  ).innerHTML = "";
+  );
+
+  computerActiveContainer.innerHTML = "";
+  computerActiveContainer.classList.remove("glow-card");
+  computerActiveContainer.classList.remove("dull-card");
 
   // safety net
   state.computerActiveCard = null;
