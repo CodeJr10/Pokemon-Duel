@@ -46,12 +46,15 @@ function setPhase(newPhase) {
 
 function renderPhaseUI() {
   const startButton = document.getElementById("start-button");
+  const vsText = document.querySelector(".vs-text");
+  console.log(vsText);
   const userHandEl = document.querySelector(".user--box .hand-cards");
   // console.log(startButton);
   // console.log(userHandEl);
 
   // Hide/show start button
   startButton.style.display = state.phase === "ready" ? "inline-block" : "none";
+  vsText.style.display = state.phase === "ready" ? "none" : "inline-block";
 
   // Enable/disable clicking on the user's hand
   const userCards = userHandEl.querySelectorAll(".card");
@@ -400,6 +403,7 @@ function cleanupCard(computerCard, userCard) {
   // win condition
   if (state.userScore >= 20 || state.computerScore >= 20) {
     setPhase("game-over");
+    winningScreen();
     return;
   }
 
@@ -407,6 +411,26 @@ function cleanupCard(computerCard, userCard) {
   setPhase("awaiting-user");
 }
 
+function winningScreen() {
+  const winnerCard = document.getElementById("winner-card");
+
+  winnerCard.style.visibility = "visible";
+  winnerCard.style.opacity = 0.8;
+  const winner = state.userScore > state.computerScore ? "User" : "Computer";
+
+  const points =
+    state.userScore > state.computerScore
+      ? state.userScore - state.computerScore
+      : state.computerScore - state.userScore;
+
+  const winnerHeader = document.querySelector(".winning-card .winner");
+  const winningText = document.querySelector(".winning-card .win-message");
+
+  winningText.textContent = `${winner} won by ${points}`;
+  winnerHeader.textContent = `${winner} wins!`;
+}
+
+// winningScreen();
 // =======================================
 // INIT FUNCTION
 // =======================================

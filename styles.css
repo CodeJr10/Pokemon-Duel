@@ -69,10 +69,6 @@ body {
   display: flex;
 }
 
-/* ===========================
-   BATTLE AREA
-   =========================== */
-
 .battle-arena {
   flex: 1;
   min-height: 220px;
@@ -248,8 +244,142 @@ body {
   filter: grayscale(100%);
 }
 
-.draw-card {
+/* ===========================
+   WINNING CARD DESIGN
+   =========================== */
+
+.winning-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 800px;
+  height: 600px;
+
+  background: linear-gradient(145deg, #164c9c, #092c67 55%, #061b42);
+
+  color: white;
+  z-index: 10;
+  visibility: hidden;
+
+  border: 8px solid #ffcb05;
+  border-radius: 25px;
+
+  box-shadow:
+    0 0 0 5px #3264a8,
+    0 0 35px rgba(255, 203, 5, 0.7),
+    inset 0 0 40px rgba(0, 0, 0, 0.5);
+
+  overflow: hidden;
+  font-family: "Trebuchet MS", sans-serif;
 }
+
+/* Decorative Pokeball background */
+.winning-card::before {
+  content: "";
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  border: 25px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0.12) 50%,
+    rgba(255, 255, 255, 0.08) 50%
+  );
+
+  z-index: -1;
+}
+
+/* Victory heading */
+.winning-card .winner {
+  font-size: 65px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+
+  color: #ffcb05;
+
+  text-shadow:
+    3px 3px 0 #3264a8,
+    6px 6px 0 #173b75,
+    0 0 20px rgba(255, 203, 5, 0.6);
+}
+
+/* Win message */
+.winning-card .win-message {
+  font-size: 28px;
+  color: #fff;
+
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px 35px;
+
+  border: 2px solid #ffcb05;
+  border-radius: 12px;
+}
+
+/* Victory decoration */
+.winning-card::after {
+  content: "★  POKÉMON BATTLE RESULT  ★";
+  position: absolute;
+  top: 35px;
+
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 5px;
+
+  color: #ffcb05;
+}
+
+/* Victory animation */
+.winning-card {
+  animation: victoryGlow 2s infinite alternate;
+}
+
+@keyframes victoryGlow {
+  from {
+    box-shadow:
+      0 0 0 5px #3264a8,
+      0 0 20px rgba(255, 203, 5, 0.4);
+  }
+
+  to {
+    box-shadow:
+      0 0 0 5px #3264a8,
+      0 0 45px rgba(255, 203, 5, 0.9);
+  }
+}
+
+.trainer-red {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: auto;
+}
+
+.villian {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 310px;
+  width: auto;
+}
+
 /* 
 Here are the proper commit message tags for your Pokémon card game project, organized by category:
 

@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- <img src="red.png" alt="trainer-red" class="trainer-red" /> -->
     <main class="game-container">
+      <!-- <img src="villian.png" alt="villain" class="villian" /> -->
+      <div class="winning-card" id="winner-card">
+        <h1 class="winner">Computer wins<h1/>
+        <h2 class="win-message">Computer won by 10 points</h2>
+      </div>
       <!-- ===========================
             PLAYER 1 CARD AREA
             ===========================  -->
@@ -27,8 +33,8 @@
             BATTLE ARENA
             ===========================  -->
       <section class="battle-arena" aria-label="Battle Arena">
-        <button id="start-button">Start</button>
         <div class="battle-arena-section">
+          <button class="start-button" id="start-button">Start</button>
           <div class="card card-pile">
             <div class="card-back"></div>
             <span class="shuffle-card">Card Deck</span>
